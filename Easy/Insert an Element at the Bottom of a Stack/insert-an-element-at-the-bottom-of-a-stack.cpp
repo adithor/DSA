@@ -10,27 +10,19 @@ using namespace std;
 
 class Solution{
 public:
-
-    void solve(stack<int> &s, int x)
-    {
-        //Base case
-        if(s.empty())
-        {
-            s.push(x);
-            return;
+    stack<int> insertAtBottom(stack<int> st,int x){
+        stack<int>temp;
+        while(!st.empty()){
+            temp.push(st.top());
+            st.pop();
         }
-        int num = s.top();
-        s.pop();
-        
-        //Recursive call
-        
-        solve(s, x);
-        s.push(num);
-        
-    }
-    stack<int> insertAtBottom(stack<int> &St,int X){
-        solve(St, X);
-        return St;
+        temp.push(x);
+        st.empty();
+        while(!temp.empty()){
+            st.push(temp.top());
+            temp.pop();
+        }
+        return st;
         
     }
 };
